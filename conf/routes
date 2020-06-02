@@ -4,7 +4,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           com.experian.debtrelief.controller.HomeController.index
+# GET     /                           com.experian.debtrelief.controller.HomeController.index
 # An example controller showing how to use dependency injection
 # GET     /count                      com.experian.debtrelief.controllers.CountController.count
 # An example controller showing how to write asynchronous code
@@ -12,6 +12,7 @@ GET     /                           com.experian.debtrelief.controller.HomeContr
 
 # Map static resources from the /public folder to the /assets URL path
 # GET     /assets/*file               com.experian.debtrelief.controllers.Assets.versioned(path="/public", file: Asset)
-
 POST    /consumer/registration      com.experian.debtrelief.controller.ConsumerController.registerConsumer()
+
+GET    /      com.experian.debtrelief.controller.ConsumerController.registerConsumer()
 
