@@ -1,0 +1,74 @@
+2020-06-02 17:10:26,166 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+    filters.ExampleFilter
+
+2020-06-02 17:10:27,076 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-8 - Application started (Dev) (no global state)
+2020-06-02 17:16:46,701 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-21 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+    filters.ExampleFilter
+
+2020-06-02 17:16:46,841 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-21 - Application started (Dev) (no global state)
+2020-06-02 17:21:22,945 [ERROR] from play.api.http.DefaultHttpErrorHandler in play-dev-mode-akka.actor.default-dispatcher-41 - 
+
+! @7g2f95m32 - Internal server error, for (POST) [/consumer/registration] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[type HomeController is not a member of package com.experian.debtrelief.controllers]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:32)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:32)
+	at scala.Option.map(Option.scala:145)
+	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:39)
+	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:34)
+	at scala.Option.map(Option.scala:145)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:34)
+	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:27)
+	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:62)
+	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:62)
+	at scala.util.Either$LeftProjection.map(Either.scala:377)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:62)
+	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$3.apply(PlayRun.scala:75)
+	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$3.apply(PlayRun.scala:74)
+	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:496)
+	at play.runsupport.Reloader$$anon$5.run(Reloader.scala:57)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:52)
+	at play.runsupport.Reloader.reload(Reloader.scala:494)
+	at play.core.server.DevServerStart$$anon$1.get(DevServerStart.scala:141)
+	at play.core.server.AkkaHttpServer.handleRequest(AkkaHttpServer.scala:301)
+	at play.core.server.AkkaHttpServer.$anonfun$createServerBinding$1(AkkaHttpServer.scala:191)
+	at akka.stream.impl.fusing.MapAsync$$anon$30.onPush(Ops.scala:1285)
+	at akka.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:541)
+	at akka.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:423)
+	at akka.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:625)
+	at akka.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:502)
+	at akka.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:600)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.akka$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:769)
+	at akka.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:784)
+	at akka.actor.Actor.aroundReceive(Actor.scala:535)
+	at akka.actor.Actor.aroundReceive$(Actor.scala:533)
+	at akka.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:691)
+	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:575)
+	at akka.actor.ActorCell.invoke(ActorCell.scala:545)
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:270)
+	at akka.dispatch.Mailbox.run(Mailbox.scala:231)
+	at akka.dispatch.Mailbox.exec(Mailbox.scala:243)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+2020-06-02 17:22:32,936 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-40 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+    filters.ExampleFilter
+
+2020-06-02 17:22:33,023 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-40 - Application started (Dev) (no global state)
