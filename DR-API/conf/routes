@@ -7,6 +7,8 @@ POST    /consumer/registration      com.experian.debtrelief.controller.ConsumerC
 
 GET    /consumer/:id/:pwd                com.experian.debtrelief.controller.ConsumerController.getConsumer(id: String,pwd: String)
 
+POST /criteria/update              com.experian.debtrelief.controller.CriteriaController.updateCriteria()
+
 POST /subscriber/detailsupdate      com.experian.debtrelief.controller.SubscriberController.updateSubscriber()
 
 GET    /pin/:ssn/:dob                com.experian.debtrelief.controller.PinDetailsController.getPinDetails(dob: String, ssn: String)
@@ -14,3 +16,9 @@ GET    /pin/:ssn/:dob                com.experian.debtrelief.controller.PinDetai
 GET    /trade/:pin                com.experian.debtrelief.controller.PinDetailsController.getTradeDetails(pin: Long)
 
 GET    /score/:pin                com.experian.debtrelief.controller.PinDetailsController.getScoreDetails(pin: Long)
+
+GET /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : Int)
+
+GET /criteria/:pin              com.experian.debtrelief.controller.CriteriaController.getCriteria(pin: Long)
+
+

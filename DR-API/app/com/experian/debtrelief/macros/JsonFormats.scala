@@ -1,6 +1,6 @@
 package com.experian.debtrelief.macros
 
-import com.experian.debtrelief.model.{Consumer, Subscriber, Criteria, PinData, TradeAccountData, CreditScore}
+import com.experian.debtrelief.model._
 import play.api.libs.json.JsObject
 
 object JsonFormats {
@@ -18,4 +18,6 @@ object JsonFormats {
     implicit val tradeAccountFormat = Json.format[TradeAccountData]
 
     implicit val scoreFormat = Json.format[CreditScore]
+
+    implicit val subscriberInfoFormat = Json.format[SubscriberInfo]
 }

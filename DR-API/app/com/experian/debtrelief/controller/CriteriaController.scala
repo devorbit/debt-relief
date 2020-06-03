@@ -1,28 +1,25 @@
 package com.experian.debtrelief.controller
 
-import com.experian.debtrelief.model.Subscriber
+import com.experian.debtrelief.model.Criteria
 import javax.inject.Inject
 import play.api.Logging
 import play.api.mvc.{AbstractController, Action, ControllerComponents}
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.play.json.collection.JSONCollection
 import play.api.libs.json._
+import scala.concurrent.{ExecutionContext, Future}
+import com.experian.debtrelief.macros.JsonFormats._
 import reactivemongo.api.{ Cursor, ReadPreference }
 import reactivemongo.play.json._, collection._
-import com.experian.debtrelief.macros.JsonFormats._
-import scala.concurrent.{ExecutionContext, Future}
 
 //@Singleton
-class SubscriberController @Inject()(components: ControllerComponents, val reactiveMongoApi: ReactiveMongoApi)(implicit exec: ExecutionContext)
+class CriteriaController @Inject()(components: ControllerComponents, val reactiveMongoApi: ReactiveMongoApi)(implicit exec: ExecutionContext)
   extends AbstractController(components) with MongoController with ReactiveMongoComponents with Logging{
 
-  def subscriberCollection: Future[JSONCollection] =
-    database.map(_.collection[JSONCollection]("subscriber"))
+  def criteriaCollection: Future[JSONCollection] =
+    database.map(_.collection[JSONCollection]("criteria"))
 
-
-
-
-  def updateSubscriber(): Action[JsValue] = Action.async(parse.json) { request =>
+  def updateCriteria(): Action[JsValue] = Action.async(parse.json) { request =>
     /*
      * request.body is a JsValue.
      * There is an implicit Writes that turns this JsValue as a JsObject,
@@ -32,13 +29,13 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
      */
 
 
-    request.body.validate[Subscriber](Subscriber.updateSubscriber) match {
-      case JsSuccess(subscriber, _) => {
-        val _: Subscriber = subscriber
+    request.body.validate[Criteria](Criteria.readCrietria) match {
+      case JsSuccess(criteria, _) => {
+        val _: Criteria = criteria
 
-        subscriberCollection.flatMap(_.insert.one(subscriber)).map { lastError =>
+        criteriaCollection.flatMap(_.insert.one(criteria)).map { lastError =>
           logger.debug(s"Successfully inserted with LastError: $lastError")
-          Created("Subscriber details are successfully updated.")
+          Created("Criteria has been successfully updated.")
         }
       }
       case e: JsError => {
@@ -49,9 +46,9 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
 
   }
 
-  def getSubscriberCriteria(subscriberId : String, acctTypeCD: String, creditScore: Int) = Action.async {
-    val cursor: Future[Cursor[JsObject]] = subscriberCollection.map {
-      _.find(Json.obj("subscriberId" -> subscriberId,"loanType" -> acctTypeCD,"creditScoreFrom" -> Json.obj("$lte" -> creditScore), "creditScoreTo" -> Json.obj("$gte" -> creditScore))).
+  def getCriteria(pin: Long) = Action.async {
+    val cursor: Future[Cursor[JsObject]] = criteriaCollection.map {
+      _.find(Json.obj("pin" -> pin)).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }
