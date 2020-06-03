@@ -1,0 +1,9 @@
+    .custom_header_text{
+    display: block;
+    position: fixed;
+    top: 37px;
+    left: 45px;
+    font-size: 13px;
+    color: #fff;
+    padding-bottom: 2px;
+    }
