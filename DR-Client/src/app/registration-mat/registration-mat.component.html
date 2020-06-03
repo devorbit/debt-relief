@@ -75,10 +75,10 @@
           <div class="row">
             <div class="col">
               <mat-form-field>
-                <input matInput [matDatepicker]="myDatepicker" autocomplete="off" placeholder="Date of Birth" formControlName="dob">
+                <input matInput [matDatepicker]="myDatepicker" autocomplete="off" placeholder="Date of Birth" formControlName="DOB">
                 <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                 <mat-datepicker #myDatepicker></mat-datepicker>
-                <mat-error *ngIf="regForm.controls['dob'].hasError('required')">
+                <mat-error *ngIf="regForm.controls['DOB'].hasError('required')">
                   DOB is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
@@ -87,8 +87,8 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput placeholder="SSN" formControlName="ssn" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['ssn'].hasError('required')">
+                <input matInput placeholder="SSN" formControlName="SSN" autocomplete="off">
+                <mat-error *ngIf="regForm.controls['SSN'].hasError('required')">
                   SSN is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
@@ -102,3 +102,6 @@
     </form>
   </mat-tab>
 </mat-tab-group>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-clip-rotate-multiple">
+  <p style="color: #fff"> Loading... </p>
+</ngx-spinner>

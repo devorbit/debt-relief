@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  userAPI: {url: 'http://localhost:9000/consumer/registration'}
+  regAPI: {url: 'http://localhost:9000/consumer/registration'},
+  loginAPI: { url: 'http://localhost:9000/consumer' },
+  pinAPI: { url: 'http://localhost:9000/pin' },
+  scoreAPI: { url: 'http://localhost:9000/score' },
 };
 
 

@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+$md-experian: (
+    50 : #e5e9f1,
+    100 : #bec8dd,
+    200 : #93a3c6,
+    300 : #677eaf,
+    400 : #47639e,
+    500 : #26478d,
+    600 : #224085,
+    700 : #1c377a,
+    800 : #172f70,
+    900 : #0d205d,
+    A100 : #92a7ff,
+    A200 : #5f7eff,
+    A400 : #2c55ff,
+    A700 : #1341ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$md-experianpink: (
+    50 : #f3e5f0,
+    100 : #e0bfd9,
+    200 : #cc94c0,
+    300 : #b769a7,
+    400 : #a74894,
+    500 : #982881,
+    600 : #902479,
+    700 : #851e6e,
+    800 : #7b1864,
+    900 : #6a0f51,
+    A100 : #ff9ee2,
+    A200 : #ff6bd3,
+    A400 : #ff38c4,
+    A700 : #ff1fbc,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+
+$my-app-primary: mat-palette($md-experian);
+$my-app-accent: mat-palette($md-experianpink, A200, A100, A400);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

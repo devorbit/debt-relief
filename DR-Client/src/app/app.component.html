@@ -1,3 +1,5 @@
+<!-- <img class="ex-img-position" src="assets/img/brand/home-about-us.png" alt=""
+    style="position: fixed; top: 100px; right: 20px; height: auto; max-width: 100%; display: inline-block; vertical-align: middle; border: 0; pointer-events: none;"> -->
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <!-- <button mat-icon-button>
@@ -7,8 +9,9 @@
             height="55" alt="Drome Logo">
         <div class="custom_header_text"> &nbsp; Debt Relief </div>
         <span class="menu-spacer"></span>
-        <div>
-            <!-- <a mat-button [routerLink]="'/'"> Registration </a> -->
+        <div *ngIf="user_profile.score && user_profile.score.length > 0">
+            <a mat-button [routerLink]="'/profile'"> Profile </a>
+            <a mat-button (click)="logout()"> Logout </a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

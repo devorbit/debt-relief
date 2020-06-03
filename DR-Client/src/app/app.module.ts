@@ -21,12 +21,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RegistrationMatComponent } from './registration-mat/registration-mat.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    RegistrationMatComponent
+    RegistrationMatComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { RegistrationMatComponent } from './registration-mat/registration-mat.co
     FormsModule,
     HttpClientModule,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
