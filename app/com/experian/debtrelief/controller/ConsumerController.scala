@@ -37,13 +37,30 @@ extends AbstractController(components) with MongoController with ReactiveMongoCo
      * turned into a JsObject using a Writes.)
      */
 
-    request.body.validate[Consumer](Consumer.readDirectUser).map { consumer =>
+
+    request.body.validate[Consumer](Consumer.readDirectUser) match {
+      case JsSuccess(consumer, _) => {
+        val _: Consumer = consumer
+
+        consumerCollection.flatMap(_.insert.one(consumer)).map { lastError =>
+          logger.debug(s"Successfully inserted with LastError: $lastError")
+          Created("User has been successfully registered.")
+        }
+      }
+        case e: JsError => {
+          e.fold(error => { Future.successful(BadRequest((JsError.toJson(error)) ))}, a => { a })
+          // error handling flow
+        }
+
+    }
+
+    /*request.body.validate[Consumer](Consumer.readDirectUser).map { consumer =>
      // `consumer` is an instance of the case class `models.User`
       consumerCollection.flatMap(_.insert.one(consumer)).map { lastError =>
         logger.debug(s"Successfully inserted with LastError: $lastError")
         Created("User has been successfully registered.")
       }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))
+    }.getOrElse(Future.successful(BadRequest("invalid json")))*/
   }
 
 }
