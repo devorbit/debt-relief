@@ -75,3 +75,46 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-top: 2em;
+    padding-left: 20px;
+}
+
+.form-container > * {
+    width: 100%;
+}
+
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+}
+
+.container {
+    padding: 10px;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-element {
+    padding: 5px 0px 25px 2px;
+    width: 100%;
+}
+
+.button {
+    width: 100%;
+}
+
+.mat-form-field-infix
+{
+    width: 500px !important;
+}
