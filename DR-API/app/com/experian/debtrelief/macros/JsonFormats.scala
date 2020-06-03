@@ -20,4 +20,6 @@ object JsonFormats {
     implicit val scoreFormat = Json.format[CreditScore]
 
     implicit val subscriberInfoFormat = Json.format[SubscriberInfo]
+
+    implicit val consumerDebtReliefFormat = Json.format[ConsumerDebtRelief]
 }

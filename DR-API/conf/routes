@@ -3,22 +3,26 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-POST    /consumer/registration      com.experian.debtrelief.controller.ConsumerController.registerConsumer()
+POST  /consumer/registration     com.experian.debtrelief.controller.ConsumerController.registerConsumer()
 
-GET    /consumer/:id/:pwd                com.experian.debtrelief.controller.ConsumerController.getConsumer(id: String,pwd: String)
+GET   /consumer/:id/:pwd         com.experian.debtrelief.controller.ConsumerController.getConsumer(id: String,pwd: String)
 
-POST /criteria/update              com.experian.debtrelief.controller.CriteriaController.updateCriteria()
+POST  /criteria/update           com.experian.debtrelief.controller.CriteriaController.updateCriteria()
 
-POST /subscriber/detailsupdate      com.experian.debtrelief.controller.SubscriberController.updateSubscriber()
+POST  /subscriber/update  com.experian.debtrelief.controller.SubscriberController.updateSubscriber()
 
-GET    /pin/:ssn/:dob                com.experian.debtrelief.controller.PinDetailsController.getPinDetails(dob: String, ssn: String)
+GET   /pin/:ssn/:dob             com.experian.debtrelief.controller.PinDetailsController.getPinDetails(dob: String, ssn: String)
 
-GET    /trade/:pin                com.experian.debtrelief.controller.PinDetailsController.getTradeDetails(pin: Long)
+GET   /trade/:pin                com.experian.debtrelief.controller.PinDetailsController.getTradeDetails(pin: Long)
 
-GET    /score/:pin                com.experian.debtrelief.controller.PinDetailsController.getScoreDetails(pin: Long)
+GET   /score/:pin                com.experian.debtrelief.controller.PinDetailsController.getScoreDetails(pin: Long)
 
-GET /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : Int)
+GET   /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : Int)
 
-GET /criteria/:pin              com.experian.debtrelief.controller.CriteriaController.getCriteria(pin: Long)
+GET   /criteria/:pin              com.experian.debtrelief.controller.CriteriaController.getCriteria(pin: Long)
+
+POST  /debtrelief/update          com.experian.debtrelief.controller.ConsumerDebtReliefController.updateConsumerDebtRelief()
+
+GET   /debtrelief/:pin            com.experian.debtrelief.controller.ConsumerDebtReliefController.getConsumerDebtRelief(pin: Long)
 
 
