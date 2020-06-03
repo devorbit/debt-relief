@@ -19,12 +19,12 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
     this.userForm = formBuilder.group({
-      firstName: [null, [Validators.required]],
+      firstName: [null, [Validators.required],[Validators.minLength(5)],[Validators.maxLength(15)]],
       lastName: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      email: [null, [Validators.required],[Validators.email]],
+      password: [null, [Validators.required],[Validators.minLength(10)]],
       DOB: [null, [Validators.required]],
-      SSN: [null, [Validators.required]],
+      SSN: [null, [Validators.required],[Validators.minLength(9)],[Validators.maxLength(9)]],
     });
   }
   ngOnInit(): void {
