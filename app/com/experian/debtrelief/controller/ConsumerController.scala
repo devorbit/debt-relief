@@ -3,17 +3,10 @@ package com.experian.debtrelief.controller
 import com.experian.debtrelief.model.Consumer
 import javax.inject.Inject
 import play.api.Logging
-import play.api.data.Mapping
-import play.api.data.validation.{Constraint, Invalid, Valid, ValidationError}
 import play.api.mvc.{AbstractController, Action, ControllerComponents}
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.play.json.collection.JSONCollection
 import play.api.libs.json._
-
-import scala.util.matching.Regex
-
-// Reactive Mongo imports
-import reactivemongo.api.Cursor
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -25,7 +18,6 @@ extends AbstractController(components) with MongoController with ReactiveMongoCo
     database.map(_.collection[JSONCollection]("consumer"))
 
   import com.experian.debtrelief.macros.JsonFormats._
-
 
 
   def registerConsumer(): Action[JsValue] = Action.async(parse.json) { request =>
@@ -43,24 +35,16 @@ extends AbstractController(components) with MongoController with ReactiveMongoCo
         val _: Consumer = consumer
 
         consumerCollection.flatMap(_.insert.one(consumer)).map { lastError =>
-          logger.debug(s"Successfully inserted with LastError: $lastError")
-          Created("User has been successfully registered.")
+        logger.debug(s"Successfully inserted with LastError: $lastError")
+        Created("User has been successfully registered.")
         }
       }
         case e: JsError => {
           e.fold(error => { Future.successful(BadRequest((JsError.toJson(error)) ))}, a => { a })
-          // error handling flow
         }
 
     }
 
-    /*request.body.validate[Consumer](Consumer.readDirectUser).map { consumer =>
-     // `consumer` is an instance of the case class `models.User`
-      consumerCollection.flatMap(_.insert.one(consumer)).map { lastError =>
-        logger.debug(s"Successfully inserted with LastError: $lastError")
-        Created("User has been successfully registered.")
-      }
-    }.getOrElse(Future.successful(BadRequest("invalid json")))*/
   }
 
 }

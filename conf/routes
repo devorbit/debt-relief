@@ -16,3 +16,5 @@ POST    /consumer/registration      com.experian.debtrelief.controller.ConsumerC
 
 GET    /      com.experian.debtrelief.controller.ConsumerController.registerConsumer()
 
+POST /subscriber/detailsupdate      com.experian.debtrelief.controller.SubscriberController.updateSubscriber()
+
