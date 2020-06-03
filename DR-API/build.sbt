@@ -1,8 +1,8 @@
-name := "debt-relief"
+name := "DR-API"
  
 version := "1.0" 
       
-lazy val `credef` = (project in file(".")).enablePlugins(PlayScala)
+lazy val `DR-API` = (project in file(".")).enablePlugins(PlayScala)
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
       

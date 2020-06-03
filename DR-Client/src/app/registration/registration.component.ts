@@ -23,8 +23,8 @@ export class RegistrationComponent implements OnInit {
       lastName: [null, [Validators.required]],
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      dob: [null, [Validators.required]],
-      ssn: [null, [Validators.required]],
+      DOB: [null, [Validators.required]],
+      SSN: [null, [Validators.required]],
     });
   }
   ngOnInit(): void {
