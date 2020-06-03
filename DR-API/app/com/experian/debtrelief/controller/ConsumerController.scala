@@ -7,8 +7,10 @@ import play.api.mvc.{AbstractController, Action, ControllerComponents}
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.play.json.collection.JSONCollection
 import play.api.libs.json._
-
 import scala.concurrent.{ExecutionContext, Future}
+import com.experian.debtrelief.macros.JsonFormats._
+import reactivemongo.api.{ Cursor, ReadPreference }
+import reactivemongo.play.json._, collection._
 
 //@Singleton
 class ConsumerController @Inject()(components: ControllerComponents, val reactiveMongoApi: ReactiveMongoApi)(implicit exec: ExecutionContext)
@@ -16,9 +18,6 @@ extends AbstractController(components) with MongoController with ReactiveMongoCo
 
   def consumerCollection: Future[JSONCollection] =
     database.map(_.collection[JSONCollection]("consumer"))
-
-  import com.experian.debtrelief.macros.JsonFormats._
-
 
   def registerConsumer(): Action[JsValue] = Action.async(parse.json) { request =>
     /*
@@ -45,6 +44,26 @@ extends AbstractController(components) with MongoController with ReactiveMongoCo
 
     }
 
+  }
+
+  def getConsumer(emailName : String, password: String) = Action.async {
+    val cursor: Future[Cursor[JsObject]] = consumerCollection.map {
+      _.find(Json.obj("email" -> emailName,"password" -> password)).
+        // perform the query and get a cursor of JsObject
+        cursor[JsObject](ReadPreference.primary)
+    }
+
+    // gather all the JsObjects in a list
+    val futurePersonsList: Future[List[JsObject]] =
+      cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
+
+    val futurePersonsJsonArray: Future[JsArray] =
+      futurePersonsList.map { consumer => Json.arr(consumer) }
+
+    // everything's ok! Let's reply with the array
+    futurePersonsJsonArray.map { consumer =>
+      Ok(consumer)
+    }
   }
 
 }

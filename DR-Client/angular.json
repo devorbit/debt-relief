@@ -125,6 +125,6 @@
   },
   "defaultProject": "DR-Client",
   "cli": {
-    "analytics": false
+    "analytics": "0dae2c8b-d5bf-4ef5-9921-f65e9e23bce0"
   }
 }
