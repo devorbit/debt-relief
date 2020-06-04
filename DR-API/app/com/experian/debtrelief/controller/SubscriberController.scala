@@ -81,13 +81,10 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
     val futurePersonsList: Future[List[JsObject]] =
       cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
 
-    val futurePersonsJsonArray: Future[JsArray] =
-      futurePersonsList.map { subscriber => Json.arr(subscriber) }
+    //val futurePersonsJsonArray: Future[JsArray] =
+      futurePersonsList.map { subscriber => Ok(Json.toJson(subscriber)) }
 
-    // everything's ok! Let's reply with the array
-    futurePersonsJsonArray.map { subscriber =>
-      Ok(subscriber)
-    }
+
   }
 
   def checkSubscriberCriteria(subscriberId : String, acctTypeCD: String, creditScoreFrom: Int, creditScoreTo: Int, debtReliefOption: String) = Action.async {
