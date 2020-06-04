@@ -20,7 +20,7 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
     database.map(_.collection[JSONCollection]("subscriber"))
 
   def subscriberInfoCollection: Future[JSONCollection] =
-    database.map(_.collection[JSONCollection]("subscriber-details"))
+    database.map(_.collection[JSONCollection]("subscriber_details"))
 
 
   def updateSubscriber(): Action[JsValue] = Action.async(parse.json) { request =>
