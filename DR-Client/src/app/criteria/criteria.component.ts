@@ -100,7 +100,7 @@ export class CriteriaComponent implements OnInit {
 
   nextClicked() {
     this.spinner.show();
-    const criteria = new Criteria(user_profile.pin, this.reasonDD, '', this.needDD);
+    const criteria = new Criteria(Number(user_profile.pin), this.reasonDD, this.needDD);
     this.criteriaService.submitCriteria(criteria).subscribe(
       criteriaData => {
         console.log('Criteria Data', criteriaData);
