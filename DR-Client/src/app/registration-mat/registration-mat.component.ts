@@ -49,7 +49,7 @@ export class RegistrationMatComponent {
             user_profile.pin = succesData;
             this.userService.score(user_profile.pin).subscribe(
               succesData => {
-                succesData = succesData[0][0];
+                succesData = succesData[0][0][2][1];
                 console.log('Score Data', succesData);
                 user_profile.score = succesData['score'];
                 this.spinner.hide();
