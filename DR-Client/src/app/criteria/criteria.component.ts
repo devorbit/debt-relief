@@ -15,11 +15,12 @@ import { environment } from '../../environments/environment';
 export class CriteriaComponent implements OnInit {
   formGroup: FormGroup;
   criteria: Criteria = new Criteria(0, '', '', '');
-  post: any = '';
+  // post: any = '';
   reasonDD;
   needDD;
   criteriaPresent = false;
   uploader: FileUploader;
+  first = true;
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
@@ -67,7 +68,8 @@ export class CriteriaComponent implements OnInit {
           this.needDD = succesData['needDetails'];
           this.spinner.hide();
         } else {
-          this.spinner.hide();
+          this.nextClicked();
+          // this.spinner.hide();
         }
       },
       err => {
@@ -92,6 +94,18 @@ export class CriteriaComponent implements OnInit {
            console.error(err);
            alert("Criteria Details are already there!")
          } ); */
+  }
+
+  nextClicked() {
+    this.spinner.show();
+    this.criteriaService.getTrade(user_profile.pin).subscribe(
+      tradeData => {
+        this.first = false;
+      }, err => {
+        console.log('Error ', err);
+        this.spinner.hide();
+      }
+    );
   }
 
 }

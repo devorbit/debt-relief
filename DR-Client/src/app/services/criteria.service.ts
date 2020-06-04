@@ -30,4 +30,8 @@ export class CriteriaService {
   checkCriteria(pin){
     return this.http.get(`${environment.checkCriteriaAPI.url}/${pin}`);
   }
+
+  getTrade(pin) {
+    return this.http.get(`${environment.getTradeAPI.url}/${pin}`);
+  }
 }

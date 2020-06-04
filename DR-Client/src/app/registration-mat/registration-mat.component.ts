@@ -35,7 +35,6 @@ export class RegistrationMatComponent {
     console.log("Logging the user", user);
     this.userService.login(user).subscribe(
       succesData => {
-        succesData = succesData[0][0];
         console.log('User Data', succesData);
         user_profile.firstName = succesData.firstName;
         user_profile.lastName = succesData.lastName;
@@ -44,14 +43,12 @@ export class RegistrationMatComponent {
         user_profile.SSN = succesData.SSN;
         this.userService.pin(user_profile.SSN, user_profile.DOB).subscribe(
           succesData => {
-            succesData = succesData[0][0];
             console.log('Pin Data', succesData);
-            user_profile.pin = succesData.pin;
+            user_profile.pin = succesData;
             this.userService.score(user_profile.pin).subscribe(
               succesData => {
-                succesData = succesData[0][0];
                 console.log('Score Data', succesData);
-                user_profile.score = succesData['score'];
+                user_profile.score = succesData;
                 this.spinner.hide();
                 this.router.navigateByUrl('/criteria');
               },

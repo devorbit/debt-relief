@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DR-Client';
   user_profile = user_profile;
 
   constructor(private router: Router) {
   }
 
   logout() {
-    user_profile.score = '';
+    user_profile.pin = '';
     this.router.navigateByUrl('/');
   }
 }
