@@ -8,6 +8,8 @@ export const environment = {
   loginAPI: { url: 'http://localhost:9000/consumer' },
   pinAPI: { url: 'http://localhost:9000/pin' },
   scoreAPI: { url: 'http://localhost:9000/score' },
+  subscriberAPI:{ url: 'http://localhost:9000/subscriber/update'},
+  checkSubscriberAPI:{ url: 'http://localhost:9000/subscriber'},
 };
 
 

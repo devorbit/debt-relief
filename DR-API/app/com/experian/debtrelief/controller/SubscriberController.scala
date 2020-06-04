@@ -19,7 +19,8 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
   def subscriberCollection: Future[JSONCollection] =
     database.map(_.collection[JSONCollection]("subscriber"))
 
-
+  def subscriberInfoCollection: Future[JSONCollection] =
+    database.map(_.collection[JSONCollection]("subscriber-details"))
 
 
   def updateSubscriber(): Action[JsValue] = Action.async(parse.json) { request =>
@@ -61,11 +62,52 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
       cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
 
     val futurePersonsJsonArray: Future[JsArray] =
-      futurePersonsList.map { consumer => Json.arr(consumer) }
+      futurePersonsList.map { subscriber => Json.arr(subscriber) }
 
     // everything's ok! Let's reply with the array
-    futurePersonsJsonArray.map { consumer =>
-      Ok(consumer)
+    futurePersonsJsonArray.map { subscriber =>
+      Ok(subscriber)
+    }
+  }
+
+  def getSubscriberInfo() = Action.async {
+    val cursor: Future[Cursor[JsObject]] = subscriberInfoCollection.map {
+      _.find(Json.obj()).
+        // perform the query and get a cursor of JsObject
+        cursor[JsObject](ReadPreference.primary)
+    }
+
+    // gather all the JsObjects in a list
+    val futurePersonsList: Future[List[JsObject]] =
+      cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
+
+    val futurePersonsJsonArray: Future[JsArray] =
+      futurePersonsList.map { subscriber => Json.arr(subscriber) }
+
+    // everything's ok! Let's reply with the array
+    futurePersonsJsonArray.map { subscriber =>
+      Ok(subscriber)
+    }
+  }
+
+  def checkSubscriberCriteria(subscriberId : String, acctTypeCD: String, creditScoreFrom: Int, creditScoreTo: Int, debtReliefOption: String) = Action.async {
+    val cursor: Future[Cursor[JsObject]] = subscriberCollection.map {
+      _.find(Json.obj("subscriberId" -> subscriberId,"loanType" -> acctTypeCD, "debtReliefOption" -> debtReliefOption,"creditScoreFrom" -> Json.obj("$lte" -> creditScoreFrom),
+                "creditScoreTo" -> Json.obj("$gte" -> creditScoreFrom),"creditScoreFrom" -> Json.obj("$lte" -> creditScoreTo), "creditScoreTo" -> Json.obj("$gte" -> creditScoreTo))).
+        // perform the query and get a cursor of JsObject
+        cursor[JsObject](ReadPreference.primary)
+    }
+
+    // gather all the JsObjects in a list
+    val futurePersonsList: Future[List[JsObject]] =
+      cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
+
+    val futurePersonsJsonArray: Future[JsArray] =
+      futurePersonsList.map { subscriber => Json.arr(subscriber) }
+
+    // everything's ok! Let's reply with the array
+    futurePersonsJsonArray.map { subscriber =>
+      Ok(subscriber)
     }
   }
 
