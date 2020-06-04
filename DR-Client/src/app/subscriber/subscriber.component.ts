@@ -34,7 +34,7 @@ export class SubscriberComponent implements OnInit {
             'loanType': [null, Validators.required ]
         });
 
-        this.httpc.get("https://localhost:9000/subscriber/list").subscribe((res:any)=> {
+        this.subscriberService.getSubscriberList().subscribe((res:any)=> {
             this.subscriberList = res;
             console.log(this.subscriberList);
         });
