@@ -13,6 +13,7 @@ export const environment = {
   checkCriteriaAPI:{url: 'http://localhost:9000/criteria'},
   criteriaAPI:{url: 'http://localhost:9000/criteria/update'},
   getTradeAPI: { url: 'http://localhost:9000/trade' },
+  getReliefValueAPI: { url: 'http://localhost:9000/subscriber' },
 };
 
 
