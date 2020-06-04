@@ -44,9 +44,9 @@ export class RegistrationMatComponent {
         user_profile.SSN = succesData.SSN;
         this.userService.pin(user_profile.SSN, user_profile.DOB).subscribe(
           succesData => {
-            succesData = succesData[0][0];
+            succesData = succesData[0][0][1][1].$long;
             console.log('Pin Data', succesData);
-            user_profile.pin = succesData.pin;
+            user_profile.pin = succesData;
             this.userService.score(user_profile.pin).subscribe(
               succesData => {
                 succesData = succesData[0][0];

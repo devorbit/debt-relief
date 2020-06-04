@@ -35,7 +35,10 @@ class PinDetailsController @Inject()(components: ControllerComponents, val react
       cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
 
     val futurePersonsJsonArray: Future[JsArray] =
-      futurePersonsList.map { pin => Json.arr(pin) }
+      futurePersonsList.map { pin => Json.arr(pin.map { x => x.fields.map{z => val (key, value) = z
+        (key, value)}
+
+      }) }
 
     // everything's ok! Let's reply with the array
     futurePersonsJsonArray.map { pin =>
@@ -43,9 +46,9 @@ class PinDetailsController @Inject()(components: ControllerComponents, val react
     }
   }
 
-  def getTradeDetails(pin : Long) = Action.async {
+  def getTradeDetails(pin : String) = Action.async {
     val cursor: Future[Cursor[JsObject]] = tradeCollection.map {
-      _.find(Json.obj("pin" -> pin,"acctSTATUSCD"-> Json.obj("$ne" -> "13"))).
+      _.find(Json.obj("pin" -> pin.toLong,"acctSTATUSCD"-> Json.obj("$ne" -> "13"))).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }
@@ -64,9 +67,9 @@ class PinDetailsController @Inject()(components: ControllerComponents, val react
   }
 
 
-  def getScoreDetails(pin : Long) = Action.async {
+  def getScoreDetails(pin : String) = Action.async {
     val cursor: Future[Cursor[JsObject]] = scoreCollection.map {
-      _.find(Json.obj("pin" -> pin)).
+      _.find(Json.obj("pin" -> pin.toLong)).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }

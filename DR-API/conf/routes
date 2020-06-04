@@ -9,11 +9,11 @@ GET   /consumer/:id/:pwd         com.experian.debtrelief.controller.ConsumerCont
 
 GET   /pin/:ssn/:dob             com.experian.debtrelief.controller.PinDetailsController.getPinDetails(dob: String, ssn: String)
 
-GET   /score/:pin                com.experian.debtrelief.controller.PinDetailsController.getScoreDetails(pin: Long)
+GET   /score/:pin                com.experian.debtrelief.controller.PinDetailsController.getScoreDetails(pin: String)
 
-GET   /trade/:pin                com.experian.debtrelief.controller.PinDetailsController.getTradeDetails(pin: Long)
+GET   /trade/:pin                com.experian.debtrelief.controller.PinDetailsController.getTradeDetails(pin: String)
 
-GET   /criteria/:pin              com.experian.debtrelief.controller.CriteriaController.getCriteria(pin: Long)
+GET   /criteria/:pin              com.experian.debtrelief.controller.CriteriaController.getCriteria(pin: String)
 
 POST  /criteria/update           com.experian.debtrelief.controller.CriteriaController.updateCriteria()
 
@@ -21,12 +21,12 @@ POST  /subscriber/update         com.experian.debtrelief.controller.SubscriberCo
 
 GET  /subscriber/list         com.experian.debtrelief.controller.SubscriberController.getSubscriberInfo()
 
-GET   /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : Int)
+GET   /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : String)
 
 GET   /subscriber/:subid/:loanType/:scoreFrom/:scoreTo/:debtRelief  com.experian.debtrelief.controller.SubscriberController.checkSubscriberCriteria(subid: String, loanType: String, scoreFrom : Int,scoreTo:Int, debtRelief: String)
 
 POST  /debtrelief/update          com.experian.debtrelief.controller.ConsumerDebtReliefController.updateConsumerDebtRelief()
 
-GET   /debtrelief/:pin            com.experian.debtrelief.controller.ConsumerDebtReliefController.getConsumerDebtRelief(pin: Long)
+GET   /debtrelief/:pin            com.experian.debtrelief.controller.ConsumerDebtReliefController.getConsumerDebtRelief(pin: String)
 
 
