@@ -53,7 +53,7 @@ export class RegistrationMatComponent {
                 console.log('Score Data', succesData);
                 user_profile.score = succesData['score'];
                 this.spinner.hide();
-                this.router.navigateByUrl('/profile');
+                this.router.navigateByUrl('/criteria');
               },
               err => {
                 console.error(err);

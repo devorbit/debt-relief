@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileComponent } from './profile/profile.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
 import { CriteriaComponent } from './criteria/criteria.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CriteriaComponent } from './criteria/criteria.component';
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

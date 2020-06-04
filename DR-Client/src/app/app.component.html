@@ -11,6 +11,8 @@
         <span class="menu-spacer"></span>
         <div *ngIf="user_profile.score && user_profile.score.length > 0">
             <a mat-button [routerLink]="'/profile'"> Profile </a>
+            <a mat-button [routerLink]="'/criteria'"> Criteria </a>
+            <a mat-button [routerLink]="'/subscriber'"> Subscription </a>
             <a mat-button (click)="logout()"> Logout </a>
         </div>
     </mat-toolbar-row>
