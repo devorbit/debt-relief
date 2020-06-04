@@ -46,9 +46,9 @@ class CriteriaController @Inject()(components: ControllerComponents, val reactiv
 
   }
 
-  def getCriteria(pin: Long) = Action.async {
+  def getCriteria(pin: String) = Action.async {
     val cursor: Future[Cursor[JsObject]] = criteriaCollection.map {
-      _.find(Json.obj("pin" -> pin)).
+      _.find(Json.obj("pin" -> pin.toLong)).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }

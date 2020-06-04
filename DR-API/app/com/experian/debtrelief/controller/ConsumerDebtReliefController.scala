@@ -46,9 +46,9 @@ class ConsumerDebtReliefController @Inject()(components: ControllerComponents, v
 
   }
 
-  def getConsumerDebtRelief(pin: Long) = Action.async {
+  def getConsumerDebtRelief(pin: String) = Action.async {
     val cursor: Future[Cursor[JsObject]] = consumerDebtReliefCollection.map {
-      _.find(Json.obj("pin" -> pin)).
+      _.find(Json.obj("pin" -> pin.toLong)).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }

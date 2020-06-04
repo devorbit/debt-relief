@@ -50,9 +50,9 @@ class SubscriberController @Inject()(components: ControllerComponents, val react
 
   }
 
-  def getSubscriberCriteria(subscriberId : String, acctTypeCD: String, creditScore: Int) = Action.async {
+  def getSubscriberCriteria(subscriberId : String, acctTypeCD: String, creditScore: String) = Action.async {
     val cursor: Future[Cursor[JsObject]] = subscriberCollection.map {
-      _.find(Json.obj("subscriberId" -> subscriberId,"loanType" -> acctTypeCD,"creditScoreFrom" -> Json.obj("$lte" -> creditScore), "creditScoreTo" -> Json.obj("$gte" -> creditScore))).
+      _.find(Json.obj("subscriberId" -> subscriberId,"loanType" -> acctTypeCD,"creditScoreFrom" -> Json.obj("$lte" -> creditScore.toInt), "creditScoreTo" -> Json.obj("$gte" -> creditScore.toInt))).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }
