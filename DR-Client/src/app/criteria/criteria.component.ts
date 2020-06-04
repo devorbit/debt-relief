@@ -67,7 +67,7 @@ export class CriteriaComponent implements OnInit {
           this.needDD = succesData['needDetails'];
           this.spinner.hide();
         } else {
-
+          this.spinner.hide();
         }
       },
       err => {
