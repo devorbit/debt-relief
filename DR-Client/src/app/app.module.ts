@@ -23,7 +23,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RegistrationMatComponent } from './registration-mat/registration-mat.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileComponent } from './profile/profile.component';
-import { SubscriberDetailsComponent } from './subscriber/subscriber-details.component';
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { SubscriberDetailsComponent } from './subscriber/subscriber-details.comp
     RegistrationComponent,
     RegistrationMatComponent,
     ProfileComponent,
-    SubscriberDetailsComponent
+    SubscriberComponent
   ],
   imports: [
     BrowserModule,
