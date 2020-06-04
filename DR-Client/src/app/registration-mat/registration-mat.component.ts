@@ -34,24 +34,27 @@ export class RegistrationMatComponent {
     const user = this.loginForm.value;
     console.log("Logging the user", user);
     this.userService.login(user).subscribe(
-      succesData => {
-        succesData = succesData[0][0];
-        console.log('User Data', succesData);
-        user_profile.firstName = succesData.firstName;
-        user_profile.lastName = succesData.lastName;
-        user_profile.email = succesData.email;
-        user_profile.DOB = succesData.DOB;
-        user_profile.SSN = succesData.SSN;
+      userData => {
+        // let userData = [[{ "_id": { "$oid": "5ed716ee8221ebeace230afd" }, "firstName": "test", "lastName": "y", "email": "ani@gmail.com", "password": "Test@12345", "DOB": "15-08-1989", "SSN": "123-23-3456" }]]
+        const tempUserData = userData[0][0];
+        console.log('User Data', tempUserData);
+        user_profile.firstName = tempUserData.firstName;
+        user_profile.lastName = tempUserData.lastName;
+        user_profile.email = tempUserData.email;
+        user_profile.DOB = tempUserData.DOB;
+        user_profile.SSN = tempUserData.SSN;
         this.userService.pin(user_profile.SSN, user_profile.DOB).subscribe(
-          succesData => {
-            succesData = succesData[0][0][1][1].$long;
-            console.log('Pin Data', succesData);
-            user_profile.pin = succesData;
+          pinData => {
+            // let pinData = [[[["_id", { "$oid": "5ed72ec7e2ca713a0b1265f8" }], ["pin", { "$long": 1234 }], ["SSN", "123-23-3456"], ["DOB", "15-08-1989"]]]];
+            pinData = pinData[0][0][1][1]['$long'];
+            console.log('Pin Data', pinData);
+            user_profile.pin = pinData.toString();
             this.userService.score(user_profile.pin).subscribe(
-              succesData => {
-                succesData = succesData[0][0][2][1];
-                console.log('Score Data', succesData);
-                user_profile.score = succesData;
+              scoreData => {
+                // let scoreData = [[[["_id", { "$oid": "5ed76701e2ca713a0b1265fa" }], ["pin", { "$long": 1234 }], ["score", 800]]]];
+                const tempScoreData = scoreData[0][0][2][1];
+                console.log('Score Data', tempScoreData);
+                user_profile.score = tempScoreData.toString();
                 this.spinner.hide();
                 this.router.navigateByUrl('/criteria');
               },

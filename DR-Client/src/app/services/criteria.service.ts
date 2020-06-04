@@ -14,17 +14,14 @@ export class CriteriaService {
   constructor(private http: HttpClient) {
   }
 
-  submitCriteria(criteria: Criteria){
-    return this.http.post(`${environment.criteriaAPI.url}`, criteria).subscribe(
-        success => {
-          console.log("Criteria added successfully");
-          return "Your records have been successfully updated";
-        },
-        failure => {
-          console.log(failure);
-          return failure;
-        }
-    );
+  submitCriteria(criteria: Criteria): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST'
+    });
+    console.log(criteria);
+    return this.http.post(`${environment.criteriaAPI.url}`, criteria, { headers });
   }
 
   checkCriteria(pin){

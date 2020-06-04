@@ -34,7 +34,7 @@
             </mat-error>
         </mat-form-field>
 
-        <input type="file" name="file" ng2FileSelect [uploader]="uploader" multiple />
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" multiple required />
         <p class="files-uploaded" *ngFor="let item of uploader.queue"> <strong> {{ item?.file?.name }}
             </strong>
             ({{ item?.file?.size/1024/1024 | number:'.2' }} MB)
@@ -43,10 +43,10 @@
 
         <div class="form-element">
             <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit()"
-                *ngIf="!criteriaPresent"
+                *ngIf="false && !criteriaPresent"
                 [disabled]="!formGroup.valid || uploader.getNotUploadedItems().length !== 1">Next</button>
             <button mat-raised-button color="primary" type="submit" class="button" (click)="nextClicked()"
-                *ngIf="criteriaPresent">Next</button>
+                *ngIf="true || criteriaPresent" [disabled]="!formGroup.valid">Next</button>
         </div>
 
     </form>

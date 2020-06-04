@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 })
 export class CriteriaComponent implements OnInit {
   formGroup: FormGroup;
-  criteria: Criteria = new Criteria(0, '', '', '');
+  // criteria: Criteria = new Criteria(0, '', '', '');
   // post: any = '';
   reasonDD;
   needDD;
@@ -100,33 +100,42 @@ export class CriteriaComponent implements OnInit {
 
   nextClicked() {
     this.spinner.show();
-    this.criteriaService.getTrade(user_profile.pin).subscribe(
-      tradeData => {
-        this.first = false;
-        // let tradeData = [[{ "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }, { "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }]];
-        let tempTradeData = tradeData[0];
-        console.log('Trade Data', tradeData);
-        console.log('Temp Trade Data', tempTradeData);
-        for (const item of tempTradeData) {
-          this.criteriaService.getReliefValue(item.subscriberId, item.acctTypeCD, user_profile.score).subscribe(
-            reliefData => {
-              // let reliefData = [[{ "_id": { "$oid": "5ed71fe38221ebeace230c6d" }, "subscriberId": "12345", "creditScoreFrom": 300, "creditScoreTo": 700, "debtReliefOption": "DP", "debtReliefValue": 90, "loanType": "01" }]];
-              let tempReliefData = reliefData[0][0];
-              console.log('Relief Data', tempReliefData);
-              item['debtReliefOption'] = tempReliefData['debtReliefOption'];
-              item['debtReliefValue'] = tempReliefData['debtReliefValue'];
-              console.log('Temp Trade Data', tempTradeData);
-              this.tradeData = tempTradeData;
-            }, err => {
-              console.log('Error', err);
-              this.spinner.hide();
+    const criteria = new Criteria(user_profile.pin, this.reasonDD, '', this.needDD);
+    this.criteriaService.submitCriteria(criteria).subscribe(
+      criteriaData => {
+        console.log('Criteria Data', criteriaData);
+        this.criteriaService.getTrade(user_profile.pin).subscribe(
+          tradeData => {
+            this.first = false;
+            // let tradeData = [[{ "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }, { "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }]];
+            let tempTradeData = tradeData[0];
+            console.log('Trade Data', tradeData);
+            console.log('Temp Trade Data', tempTradeData);
+            for (const item of tempTradeData) {
+              this.criteriaService.getReliefValue(item.subscriberId, item.acctTypeCD, user_profile.score).subscribe(
+                reliefData => {
+                  // let reliefData = [[{ "_id": { "$oid": "5ed71fe38221ebeace230c6d" }, "subscriberId": "12345", "creditScoreFrom": 300, "creditScoreTo": 700, "debtReliefOption": "DP", "debtReliefValue": 90, "loanType": "01" }]];
+                  let tempReliefData = reliefData[0][0];
+                  console.log('Relief Data', tempReliefData);
+                  item['debtReliefOption'] = tempReliefData['debtReliefOption'];
+                  item['debtReliefValue'] = tempReliefData['debtReliefValue'];
+                  console.log('Temp Trade Data', tempTradeData);
+                  this.tradeData = tempTradeData;
+                }, err => {
+                  console.log('Error', err);
+                  this.spinner.hide();
+                }
+              );
             }
-          );
-        }
-        this.tradeData = tempTradeData;
-        this.spinner.hide();
+            this.tradeData = tempTradeData;
+            this.spinner.hide();
+          }, err => {
+            console.log('Error ', err);
+            this.spinner.hide();
+          }
+        );
       }, err => {
-        console.log('Error ', err);
+        console.log('Error', err);
         this.spinner.hide();
       }
     );
