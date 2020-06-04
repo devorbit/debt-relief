@@ -1,0 +1,40 @@
+<div class="criteria-container" *ngIf="!post" novalidate>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
+
+        <div style="padding-bottom: 1em">
+            <label style="font-size: x-large"><strong>Eligibility Criteria: </strong></label>
+        </div>
+
+        <mat-form-field class="form-element">
+            <mat-select placeholder="Financial Hardship Reason" formControlName="reasonCd">
+                <mat-option type='text' value="TR">Termination</mat-option>
+                <mat-option type='text' value="RW">Reduction of Wages</mat-option>
+                <mat-option type='text' value="RD">Reduction of Workdays</mat-option>
+                <mat-option type='text' value="LH">Loss of Income Impact of Family Member</mat-option>
+                <mat-option type='text' value="HT">Lost job due to Health Issue</mat-option>
+                <mat-option type='text' value="OT">Others</mat-option>
+            </mat-select>
+            <mat-error *ngIf="!formGroup.controls['reasonCd'].valid && formGroup.controls['reasonCd'].touched">
+                Enter your Financial Hardship Reason
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+            <mat-select placeholder="Details of Need" formControlName="needDetails">
+                <mat-option type='text' value="PR">Personal</mat-option>
+                <mat-option type='text' value="VL">Vehicle Buying</mat-option>
+                <mat-option type='text' value="HL">Home Loan EMI Payments</mat-option>
+                <mat-option type='text' value="HT">Health Issues</mat-option>
+                <mat-option type='text' value="OT">Others</mat-option>
+            </mat-select>
+            <mat-error *ngIf="!formGroup.controls['needDetails'].valid && formGroup.controls['needDetails'].touched">
+                Enter your Details of Need
+            </mat-error>
+        </mat-form-field>
+
+        <div class="form-element">
+            <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Next</button>
+        </div>
+
+    </form>
+</div>

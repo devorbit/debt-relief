@@ -31,11 +31,11 @@
 
         <mat-form-field class="form-element">
             <mat-select placeholder="Debt Relief Option" formControlName="debtReliefOption">
-                <mat-option type='text' value="Deferred Payments">Deferred Payments</mat-option>
-                <mat-option type='text' value="Refinance with longer repayment terms">Refinance with longer repayment terms</mat-option>
-                <mat-option type='text' value="Reduce interest rates">Reduce interest rates</mat-option>
-                <mat-option type='text' value="Reduce payment amt">Reduce payment amt</mat-option>
-                <mat-option type='text' value="Waived late fees">Waived late fees</mat-option>
+                <mat-option type='text' value="DP">Deferred Payments</mat-option>
+                <mat-option type='text' value="RT">Refinance with longer repayment terms</mat-option>
+                <mat-option type='text' value="RI">Reduce interest rates</mat-option>
+                <mat-option type='text' value="RP">Reduce payment amt</mat-option>
+                <mat-option type='text' value="WF">Waived late fees</mat-option>
             </mat-select>
             <mat-error *ngIf="!formGroup.controls['debtReliefOption'].valid && formGroup.controls['debtReliefOption'].touched">
                 Select a Value
@@ -51,14 +51,15 @@
 
         <mat-form-field class="form-element">
             <mat-select placeholder="Loan Type" formControlName="loanType">
-                <mat-option type='text' value="AUTO LOAN">AUTO LOAN</mat-option>
-                <mat-option type='text' value="AUTO LEASE">AUTO LEASE</mat-option>
-                <mat-option type='text' value="CREDIT CARD">CREDIT CARD</mat-option>
-                <mat-option type='text' value="CONVENTIONAL REAL ESTATE MORTGAGE">CONVENTIONAL REAL ESTATE MORTGAGE</mat-option>
-                <mat-option type='text' value="REV CHARGE ACCOUNT">REV CHARGE ACCOUNT</mat-option>
-                <mat-option type='text' value="STUDENT LOAN">STUDENT LOAN</mat-option>
-                <mat-option type='text' value="UTILITY COMPANY">UTILITY COMPANY</mat-option>
-                <mat-option type='text' value="CELLULAR PHONE">CELLULAR PHONE</mat-option>
+                <mat-option type='text' value="00">AUTO LOAN</mat-option>
+                <mat-option type='text' value="3A">AUTO LEASE</mat-option>
+                <mat-option type='text' value="18">CREDIT CARD</mat-option>
+                <mat-option type='text' value="26">CONVENTIONAL REAL ESTATE MORTGAGE</mat-option>
+                <mat-option type='text' value="07">REV CHARGE ACCOUNT</mat-option>
+                <mat-option type='text' value="12">STUDENT LOAN</mat-option>
+                <mat-option type='text' value="92">UTILITY COMPANY</mat-option>
+                <mat-option type='text' value="4D">CELLULAR PHONE</mat-option>
+                <mat-option type='text' value="0J">UTILITY COMPANY TEC</mat-option>
             </mat-select>
             <mat-error *ngIf="!formGroup.controls['loanType'].valid && formGroup.controls['loanType'].touched">
                 Select a Value
@@ -71,32 +72,3 @@
 
     </form>
 </div>
-<!--<div class="form-container">
-<label style="padding-bottom: 20px"><strong>Subscriber Details: </strong></label>
-<mat-form-field>
- <input matInput placeholder="Subscriber Id">
-</mat-form-field>
-
-<mat-form-field>
- <input matInput placeholder="Subscriber Id">
-</mat-form-field>
-
-<mat-form-field>
- <input matInput placeholder="Subscriber Id">
-</mat-form-field>
-
-&lt;!&ndash;<mat-slider step="4" tickInterval="3"></mat-slider>
-<mat-slider
-thumbLabel
-[displayWith]="formatLabel"
-tickInterval="1000"
-min="0"
-step="1" tickInterval="3"
-max="800"></mat-slider>&ndash;&gt;
-
-<mat-form-field>
- <mat-select placeholder="Select">
-   <mat-option value="option">Option</mat-option>
- </mat-select>
-</mat-form-field>
-</div>-->

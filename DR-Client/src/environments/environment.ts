@@ -10,6 +10,8 @@ export const environment = {
   scoreAPI: { url: 'http://localhost:9000/score' },
   subscriberAPI:{ url: 'http://localhost:9000/subscriber/update'},
   checkSubscriberAPI:{ url: 'http://localhost:9000/subscriber'},
+  checkCriteriaAPI:{url: 'http://localhost:9000/criteria'},
+  criteriaAPI:{url: 'http://localhost:9000/criteria/update'},
 };
 
 

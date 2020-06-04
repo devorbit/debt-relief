@@ -24,6 +24,7 @@ import { RegistrationMatComponent } from './registration-mat/registration-mat.co
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileComponent } from './profile/profile.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
+import { CriteriaComponent } from './criteria/criteria.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SubscriberComponent } from './subscriber/subscriber.component';
     RegistrationComponent,
     RegistrationMatComponent,
     ProfileComponent,
-    SubscriberComponent
+    SubscriberComponent,
+    CriteriaComponent
   ],
   imports: [
     BrowserModule,
