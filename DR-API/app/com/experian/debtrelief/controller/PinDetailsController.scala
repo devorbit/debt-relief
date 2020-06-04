@@ -45,7 +45,7 @@ class PinDetailsController @Inject()(components: ControllerComponents, val react
 
   def getTradeDetails(pin : Long) = Action.async {
     val cursor: Future[Cursor[JsObject]] = tradeCollection.map {
-      _.find(Json.obj("pin" -> pin)).
+      _.find(Json.obj("pin" -> pin,"acctSTATUSCD"-> Json.obj("$ne" -> "13"))).
         // perform the query and get a cursor of JsObject
         cursor[JsObject](ReadPreference.primary)
     }
