@@ -63,6 +63,13 @@
         <ng-container matColumnDef="acctSTATUSCD">
             <th mat-header-cell *matHeaderCellDef> Account Status Code </th>
             <td mat-cell *matCellDef="let element"> {{element.acctSTATUSCD}} </td>
+            <td mat-cell *matCellDef="let element">
+                <mat-select placeholder="Account Type Code" value="{{element.acctSTATUSCD}}">
+                    <mat-option type='text' value="11">Current</mat-option>
+                    <mat-option type='text' value="05">Account transferred</mat-option>
+                    <mat-option type='text' value="71">Account 30-59 days past the due dateD</mat-option>
+                </mat-select>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="acctTypeCD">
@@ -77,8 +84,8 @@
                     <mat-option type='text' value="12">STUDENT LOAN</mat-option>
                     <mat-option type='text' value="92">UTILITY COMPANY</mat-option>
                     <mat-option type='text' value="4D">CELLULAR PHONE</mat-option>
-                    <mat-option type='text' value="0J">UTILITY COMPANY TEC</mat-option>
                 </mat-select>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="acctBalanceAm">
