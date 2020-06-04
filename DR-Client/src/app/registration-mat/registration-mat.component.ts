@@ -35,6 +35,7 @@ export class RegistrationMatComponent {
     console.log("Logging the user", user);
     this.userService.login(user).subscribe(
       succesData => {
+        succesData = succesData[0][0];
         console.log('User Data', succesData);
         user_profile.firstName = succesData.firstName;
         user_profile.lastName = succesData.lastName;
