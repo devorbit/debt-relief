@@ -19,9 +19,11 @@ POST  /criteria/update           com.experian.debtrelief.controller.CriteriaCont
 
 POST  /subscriber/update         com.experian.debtrelief.controller.SubscriberController.updateSubscriber()
 
+GET  /subscriber/list         com.experian.debtrelief.controller.SubscriberController.getSubscriberInfo()
+
 GET   /subscriber/:subid/:loanType/:score  com.experian.debtrelief.controller.SubscriberController.getSubscriberCriteria(subid: String, loanType: String, score : Int)
 
-GET   /subscriber/:subid/:loanType/:score/:debtRelief  com.experian.debtrelief.controller.SubscriberController.checkSubscriberCriteria(subid: String, loanType: String, score : Int, debtRelief: String)
+GET   /subscriber/:subid/:loanType/:scoreFrom/:scoreTo/:debtRelief  com.experian.debtrelief.controller.SubscriberController.checkSubscriberCriteria(subid: String, loanType: String, scoreFrom : Int,scoreTo:Int, debtRelief: String)
 
 POST  /debtrelief/update          com.experian.debtrelief.controller.ConsumerDebtReliefController.updateConsumerDebtRelief()
 

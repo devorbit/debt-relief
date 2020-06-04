@@ -9,7 +9,7 @@ export class Subscriber {
         ,         debtReliefValue: number, loanType: string) {
         // this.id = id;
         this.subscriberId = subscriberId;
-        this.creditScoreTo = creditScoreFrom;
+        this.creditScoreFrom = creditScoreFrom;
         this.creditScoreTo = creditScoreTo;
         this.debtReliefOption = debtReliefOption;
         this.debtReliefValue = debtReliefValue;

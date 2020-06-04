@@ -24,4 +24,8 @@ export class SubscriberService {
             }
         );
     }
+
+    checkSubscriber(subscriberId, loanType, scoreFrom,scoreTo, debtRelief){
+        return this.http.get(`${environment.checkSubscriberAPI.url}/${subscriberId}/${loanType}/${scoreFrom}/${scoreTo}/${debtRelief}`);
+    }
 }

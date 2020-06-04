@@ -36,7 +36,16 @@ export class SubscriberComponent implements OnInit {
         this.post='ok';
         this.subscriber = this.formGroup.value;
         console.log('Submitting' + this.subscriber )
-        this.subscriberService.submitSubscriber(this.subscriber);
+        this.subscriberService.checkSubscriber(this.subscriber.subscriberId,this.subscriber.loanType,this.subscriber.creditScoreFrom,this.subscriber.creditScoreTo,this.subscriber.debtReliefOption).subscribe(
+            succesData => {
+                    console.log(succesData);
+                    this.subscriberService.submitSubscriber(this.subscriber);
+                    alert("Subscriber Details updated Successfully!")
+                    },
+                err => {
+                    console.error(err);
+                    alert("Subscriber Details are already there!")
+                } );
     }
 
 }

@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
       email: [null, [Validators.required],[Validators.email]],
       password: [null, [Validators.required],[Validators.minLength(10)]],
       DOB: [null, [Validators.required]],
-      SSN: [null, [Validators.required],[Validators.minLength(9)],[Validators.maxLength(9)]],
+      SSN: [null, [Validators.required],[Validators.minLength(9)],[Validators.maxLength(9)],[Validators.pattern("/^[0-9]{3}\\-?[0-9]{2}\\-?[0-9]{4}$/")]],
     });
   }
   ngOnInit(): void {
