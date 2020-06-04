@@ -79,7 +79,9 @@ class PinDetailsController @Inject()(components: ControllerComponents, val react
       cursor.flatMap(_.collect[List](-1, Cursor.FailOnError[List[JsObject]]()))
 
     val futurePersonsJsonArray: Future[JsArray] =
-      futurePersonsList.map { score => Json.arr(score) }
+      futurePersonsList.map { score => Json.arr(score.map { x => x.fields.map{z => val (key, value) = z
+        (key, value)}
+      }) }
 
     // everything's ok! Let's reply with the array
     futurePersonsJsonArray.map { score =>
