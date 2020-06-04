@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {SubscriberService} from "../services/subscriber.service";
 import {Subscriber} from "../models/subscriber";
+import {HttpClient} from "@angular/common/http";
+import {SubscriberList} from "../models/subscriber-list"
 
 @Component({
     selector: 'subscriber',
@@ -18,7 +20,11 @@ export class SubscriberComponent implements OnInit {
     subscriber: Subscriber = new Subscriber('',0,0,'',0,'');
     post: any='';
 
-    constructor(private formBuilder: FormBuilder, private subscriberService: SubscriberService) {
+    subscriberList: SubscriberList;
+
+    subscriberIdValue: string;
+
+    constructor(private formBuilder: FormBuilder, private subscriberService: SubscriberService, private httpc: HttpClient) {
         this.formGroup = this.formBuilder.group({
             'subscriberId': [null, Validators.required],
             'creditScoreFrom': [null, Validators.required],
@@ -26,6 +32,11 @@ export class SubscriberComponent implements OnInit {
             'debtReliefOption': [null, Validators.required ],
             'debtReliefValue': [null, Validators.required ],
             'loanType': [null, Validators.required ]
+        });
+
+        this.httpc.get("https://localhost:9000/subscriber/list").subscribe((res:any)=> {
+            this.subscriberList = res;
+            console.log(this.subscriberList);
         });
     }
 
