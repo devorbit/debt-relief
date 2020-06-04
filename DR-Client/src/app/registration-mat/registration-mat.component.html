@@ -1,14 +1,14 @@
-<mat-tab-group class="shipping-card">
+<mat-tab-group class="shipping-card" (selectedTabChange)="tabChanged($event)">
   <mat-tab label="Login">
-    <form [formGroup]="loginForm" novalidate (ngSubmit)="loginOnSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()">
       <mat-card>
         <mat-card-content>
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="email" placeholder="Email" formControlName="email" autocomplete="off">
-                <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
-                  Email is <strong>required</strong>
+                <input matInput type="email" placeholder="Email" formControlName="email" autocomplete="off" required>
+                <mat-error *ngIf="!loginForm.controls['email'].valid">
+                  Incorrect Email Format
                 </mat-error>
               </mat-form-field>
             </div>
@@ -16,48 +16,38 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off">
-                <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-                  Password is <strong>required</strong>
+                <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off" required>
+                <mat-error *ngIf="!loginForm.controls['password'].valid">
+                  Minimum length 10
                 </mat-error>
               </mat-form-field>
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">Login</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
         </mat-card-actions>
       </mat-card>
     </form>
   </mat-tab>
   <mat-tab label="Register">
-    <form [formGroup]="regForm" novalidate (ngSubmit)="regOnSubmit()">
+    <form [formGroup]="regForm" (ngSubmit)="regOnSubmit()">
       <mat-card>
         <mat-card-content>
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="First name" formControlName="firstName" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['firstName'].hasError('required')">
-                  First name is <strong>required</strong>
+                <input matInput type="text" placeholder="First name" formControlName="firstName" autocomplete="off" required>
+                <mat-error *ngIf="!regForm.controls['firstName'].valid">
+                  First Name is required
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="Last name" formControlName="lastName" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['lastName'].hasError('required')">
-                  Last name is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <mat-form-field class="full-width">
-                <input matInput type="email" placeholder="Email" formControlName="email" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['email'].hasError('required')">
-                  Email is <strong>required</strong>
+                <input matInput type="text" placeholder="Last name" formControlName="lastName" autocomplete="off" required>
+                <mat-error *ngIf="!regForm.controls['lastName'].valid">
+                  Last name is required
                 </mat-error>
               </mat-form-field>
             </div>
@@ -65,9 +55,9 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['password'].hasError('required')">
-                  Password is <strong>required</strong>
+                <input matInput type="email" placeholder="Email" formControlName="email" autocomplete="off" required>
+                <mat-error *ngIf="!regForm.controls['email'].valid">
+                  Incorrect Email Format
                 </mat-error>
               </mat-form-field>
             </div>
@@ -75,9 +65,19 @@
           <div class="row">
             <div class="col">
               <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="SSN" formControlName="SSN" autocomplete="off">
-                <mat-error *ngIf="regForm.controls['SSN'].hasError('required')">
-                  SSN is <strong>required</strong>
+                <input matInput type="password" placeholder="Password" formControlName="password" autocomplete="off" required>
+                <mat-error *ngIf="!regForm.controls['password'].valid">
+                  Minimum length 10
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput type="text" placeholder="SSN" formControlName="SSN" autocomplete="off" required>
+                <mat-error *ngIf="!regForm.controls['SSN'].valid">
+                  Length should be 9
                 </mat-error>
               </mat-form-field>
             </div>
@@ -86,18 +86,18 @@
             <div class="col">
               <mat-form-field>
                 <input matInput [matDatepicker]="myDatepicker" autocomplete="off" placeholder="Date of Birth"
-                  formControlName="DOB">
+                  formControlName="DOB" required>
                 <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                 <mat-datepicker #myDatepicker></mat-datepicker>
-                <mat-error *ngIf="regForm.controls['DOB'].hasError('required')">
-                  DOB is <strong>required</strong>
+                <mat-error *ngIf="!regForm.controls['DOB'].valid">
+                  DOB is required
                 </mat-error>
               </mat-form-field>
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit">Submit</button>
+          <button mat-raised-button color="primary" type="submit"  [disabled]="!regForm.valid">Submit</button>
         </mat-card-actions>
       </mat-card>
     </form>

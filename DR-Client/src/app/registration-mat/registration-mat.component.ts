@@ -4,6 +4,7 @@ import { user_profile } from '../user.profile';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 declare var $: any;
 @Component({
   selector: 'app-registration-mat',
@@ -12,17 +13,17 @@ declare var $: any;
 })
 export class RegistrationMatComponent {
   loginForm = this.loginFB.group({
-    email: [null, [Validators.required], [Validators.email]],
-    password: [null, [Validators.required], [Validators.minLength(10)]],
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(10)]],
   });
 
   regForm = this.regFB.group({
-    firstName: [null, [Validators.required], [Validators.minLength(5)], [Validators.maxLength(15)]],
+    firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
-    email: [null, [Validators.required], [Validators.email]],
-    password: [null, [Validators.required], [Validators.minLength(10)]],
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(10)]],
     DOB: [null, [Validators.required]],
-    SSN: [null, [Validators.required], [Validators.minLength(9)], [Validators.maxLength(9)]],
+    SSN: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
   });
 
   constructor(private regFB: FormBuilder, private loginFB: FormBuilder, private userService: UserService, private spinner: NgxSpinnerService, private router: Router) {
@@ -86,5 +87,11 @@ export class RegistrationMatComponent {
         this.spinner.hide();
       }
     );
+  }
+
+  tabChanged(event: MatTabChangeEvent) {
+    console.log('Tab changed');
+    this.loginForm.reset();
+    this.regForm.reset();
   }
 }
