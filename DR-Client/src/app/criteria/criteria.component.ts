@@ -18,7 +18,7 @@ export class CriteriaComponent implements OnInit {
   // post: any = '';
   reasonDD;
   needDD;
-  criteriaPresent = true;
+  criteriaPresent = false;
   uploader: FileUploader;
   first = true;
   tradeData;
@@ -70,8 +70,8 @@ export class CriteriaComponent implements OnInit {
           this.needDD = succesData['needDetails'];
           this.spinner.hide();
         } else {
-          this.nextClicked();
-          // this.spinner.hide();
+          // this.nextClicked();
+          this.spinner.hide();
         }
       },
       err => {
@@ -98,7 +98,7 @@ export class CriteriaComponent implements OnInit {
          } ); */
   }
 
-  async nextClicked() {
+  nextClicked() {
     this.spinner.show();
     this.criteriaService.getTrade(user_profile.pin).subscribe(
       tradeData => {
