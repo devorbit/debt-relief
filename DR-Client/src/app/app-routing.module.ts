@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationMatComponent } from './registration-mat/registration-mat.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SubscriberDetailsComponent } from './subscriber/subscriber-details.component';
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 const routes: Routes = [
     { path: '', component: RegistrationMatComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: 'subscriber-details', component: SubscriberDetailsComponent }
+    { path: 'subscriber', component: SubscriberComponent }
 ];
 
 @NgModule({
