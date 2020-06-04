@@ -12,6 +12,9 @@ export class SubscriberService {
     constructor(private http: HttpClient) { }
 
 
+    getSubscriberList(){
+        return this.http.get(`${environment.getSubscriberListAPI.url}`);
+    }
     submitSubscriber(subscriber: Subscriber){
         return this.http.post(`${environment.subscriberAPI.url}`, subscriber).subscribe(
             success => {

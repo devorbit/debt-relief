@@ -56,18 +56,36 @@
     <table mat-table [dataSource]="tradeData" class="mat-elevation-z8">
 
         <ng-container matColumnDef="accountNB">
-            <th mat-header-cell *matHeaderCellDef> Account NB </th>
+            <th mat-header-cell *matHeaderCellDef> Account Number </th>
             <td mat-cell *matCellDef="let element"> {{element.accountNB.$long}} </td>
         </ng-container>
 
         <ng-container matColumnDef="acctSTATUSCD">
-            <th mat-header-cell *matHeaderCellDef> Account Status CD </th>
+            <th mat-header-cell *matHeaderCellDef> Account Status Code </th>
             <td mat-cell *matCellDef="let element"> {{element.acctSTATUSCD}} </td>
+            <td mat-cell *matCellDef="let element">
+                <mat-select placeholder="Account Type Code" value="{{element.acctSTATUSCD}}">
+                    <mat-option type='text' value="11">Current</mat-option>
+                    <mat-option type='text' value="05">Account transferred</mat-option>
+                    <mat-option type='text' value="71">Account 30-59 days past the due dateD</mat-option>
+                </mat-select>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="acctTypeCD">
-            <th mat-header-cell *matHeaderCellDef> Account Type CD </th>
-            <td mat-cell *matCellDef="let element"> {{element.acctTypeCD}} </td>
+            <th mat-header-cell *matHeaderCellDef> Account Type Code </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-select placeholder="Account Type Code" value="{{element.acctTypeCD}}">
+                    <mat-option type='text' value="00">AUTO LOAN</mat-option>
+                    <mat-option type='text' value="3A">AUTO LEASE</mat-option>
+                    <mat-option type='text' value="18">CREDIT CARD</mat-option>
+                    <mat-option type='text' value="26">CONVENTIONAL REAL ESTATE MORTGAGE</mat-option>
+                    <mat-option type='text' value="07">REV CHARGE ACCOUNT</mat-option>
+                    <mat-option type='text' value="12">STUDENT LOAN</mat-option>
+                    <mat-option type='text' value="92">UTILITY COMPANY</mat-option>
+                    <mat-option type='text' value="4D">CELLULAR PHONE</mat-option>
+                </mat-select>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="acctBalanceAm">
