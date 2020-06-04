@@ -100,11 +100,6 @@
             <td mat-cell *matCellDef="let element"> {{element.terms}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="debtReliefValue">
-            <th mat-header-cell *matHeaderCellDef> Debt Relief Value </th>
-            <td mat-cell *matCellDef="let element"> {{element.debtReliefValue}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="debtReliefOption">
             <th mat-header-cell *matHeaderCellDef> Debt Relief Option </th>
             <td mat-cell *matCellDef="let element">
@@ -116,6 +111,11 @@
                     <mat-option type='text' value="WF">Waived late fees</mat-option>
                 </mat-select>
             </td>
+        </ng-container>
+
+        <ng-container matColumnDef="debtReliefValue">
+            <th mat-header-cell *matHeaderCellDef> Debt Relief Value </th>
+            <td mat-cell *matCellDef="let element"> {{element.debtReliefValue}} </td>
         </ng-container>
 
         <ng-container matColumnDef="apply">
