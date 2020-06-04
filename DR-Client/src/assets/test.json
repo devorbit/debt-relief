@@ -1,0 +1,15 @@
+[
+  {
+    "_id": {
+      "$oid": "5ed72ddfe2ca713a0b1265f5"
+    },
+    "subscriberId": "0001",
+    "subscriberName": "Test Bank"
+  }, {
+    "_id": {
+      "$oid": "5ed915fbe2ca713a0b1265fe"
+    },
+    "subscriberId": "0002",
+    "subscriberName": "Test 2 Bank"
+  }
+]

@@ -34,4 +34,8 @@ export class CriteriaService {
   getTrade(pin) {
     return this.http.get(`${environment.getTradeAPI.url}/${pin}`);
   }
+
+  getReliefValue(subscriberId, acctTypeCD, score) {
+    return this.http.get(`${environment.getReliefValueAPI.url}/${subscriberId}/${acctTypeCD}/${score}`);
+  }
 }
