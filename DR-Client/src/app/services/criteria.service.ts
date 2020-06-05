@@ -4,6 +4,7 @@ import {Subscriber} from '../models/subscriber';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Criteria} from "../models/criteria";
+import {DebtRelief} from '../models/debt-relief';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,18 @@ export class CriteriaService {
 
   getReliefValue(subscriberId, acctTypeCD, score) {
     return this.http.get(`${environment.getReliefValueAPI.url}/${subscriberId}/${acctTypeCD}/${score}`);
+  }
+
+  submitDebtRelief(debtRelief : DebtRelief){
+    return this.http.post(`${environment.updateDebtReliefAPI.url}`, debtRelief).subscribe(
+        success => {
+          console.log("Debt Relief Options updated successfully");
+          return "Your records have been successfully updated";
+        },
+        failure => {
+          console.log(failure);
+          return failure;
+        }
+    );
   }
 }
