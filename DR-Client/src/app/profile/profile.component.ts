@@ -10,7 +10,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   userProfile = user_profile;
 
     gaugeType = 'arch';
-    gaugeValue = 700;
+    gaugeValue = this.userProfile.score;
     gaugeLabel = 'Credit Score';
 
     thresholdConfig = {
