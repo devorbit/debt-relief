@@ -26,7 +26,8 @@ export class CriteriaComponent implements OnInit {
   tradeData;
   displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefOption', 'apply'];
   debtReliefOptionNgModel = {};
-  debtRelief: DebtRelief = new DebtRelief(0,0,'','','',0,'','');
+  applyModel = {};
+  debtRelief: DebtRelief = new DebtRelief(0, 0, '', '', '', 0, '', '');
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
@@ -178,15 +179,26 @@ export class CriteriaComponent implements OnInit {
     );
   }
 
-  applyClicked(rowJson) {
+  applyClicked(rowJson, event) {
+    this.spinner.show();
     console.log('Row JSON', rowJson);
     const value = Number(this.debtReliefOptionNgModel[rowJson._id.$oid].split('@@')[0]);
     const option = this.debtReliefOptionNgModel[rowJson._id.$oid].split('@@')[1];
     const date = new Date();
     const dateString = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
-    this.debtRelief = new DebtRelief(rowJson.pin.$long,rowJson.accountNB.$long,rowJson.subscriberId,rowJson.acctTypeCD,option,value,"Applied",dateString);
-    this.criteriaService.submitDebtRelief(this.debtRelief);
-    // *** TO DO ***/
+    this.debtRelief = new DebtRelief(rowJson.pin.$long, rowJson.accountNB.$long, rowJson.subscriberId, rowJson.acctTypeCD, option, value, "Applied", dateString);
+    this.criteriaService.submitDebtRelief(this.debtRelief).subscribe(
+      success => {
+        this.spinner.hide();
+        console.log('Success', success);
+        alert("Debt Relief Option applied successfully");
+        this.applyModel[rowJson._id.$oid] = true;
+      },
+      failure => {
+        console.log('Error', failure);
+        this.spinner.hide();
+      }
+    );
   }
 
 }

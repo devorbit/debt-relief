@@ -38,15 +38,6 @@ export class CriteriaService {
   }
 
   submitDebtRelief(debtRelief : DebtRelief){
-    return this.http.post(`${environment.updateDebtReliefAPI.url}`, debtRelief).subscribe(
-        success => {
-          console.log("Debt Relief Options updated successfully");
-          return "Your records have been successfully updated";
-        },
-        failure => {
-          console.log(failure);
-          return failure;
-        }
-    );
+    return this.http.post(`${environment.updateDebtReliefAPI.url}`, debtRelief);
   }
 }

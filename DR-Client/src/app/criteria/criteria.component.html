@@ -94,7 +94,7 @@
         </ng-container>
 
         <ng-container matColumnDef="acctPaymentAmount">
-            <th mat-header-cell *matHeaderCellDef> Account Payment Amount </th>
+            <th mat-header-cell *matHeaderCellDef> Account Payment <br> Amount </th>
             <td mat-cell *matCellDef="let element"> {{element.acctPaymentAmount.$long}} </td>
         </ng-container>
 
@@ -119,10 +119,13 @@
         </ng-container>
 
         <ng-container matColumnDef="debtReliefOption">
-            <th mat-header-cell *matHeaderCellDef> Debt Relief <br> Option/Value </th>
+            <th mat-header-cell *matHeaderCellDef> Debt Relief Option/Value *</th>
             <td mat-cell *matCellDef="let element">
-                <mat-select placeholder="Select Option" [(ngModel)]="debtReliefOptionNgModel[element._id.$oid]">
-                    <mat-option *ngFor="let item of element.debtReliefArray" type='text' [value]="item.debtReliefValue + '@@' + item.debtReliefOption">{{item.debtReliefDisplayVal}}</mat-option> 
+                <mat-select placeholder="Select Option" [(ngModel)]="debtReliefOptionNgModel[element._id.$oid]"
+                    required>
+                    <mat-option *ngFor="let item of element.debtReliefArray" type='text'
+                        [value]="item.debtReliefValue + '@@' + item.debtReliefOption">{{item.debtReliefDisplayVal}}
+                    </mat-option>
                 </mat-select>
             </td>
         </ng-container>
@@ -135,8 +138,11 @@
         <ng-container matColumnDef="apply">
             <th mat-header-cell *matHeaderCellDef> Apply </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-raised-button color="primary" type="submit" class="button" (click)="applyClicked(element)"
-                    [disabled]="!element.debtReliefArray">Apply</button>
+                <button mat-raised-button color="primary" type="submit" class="button"
+                    (click)="applyClicked(element, $event)" *ngIf="!applyModel[element._id.$oid]"
+                    [disabled]="!debtReliefOptionNgModel[element._id.$oid]">Apply</button>
+                <button mat-raised-button color="accent" class="button" disabled
+                    *ngIf="applyModel[element._id.$oid]">Applied</button>
             </td>
         </ng-container>
 
