@@ -10,9 +10,9 @@
         <div class="custom_header_text"> &nbsp; Debt Relief </div>
         <span class="menu-spacer"></span>
         <div *ngIf="user_profile.pin && user_profile.pin.length > 0">
-            <a mat-button [routerLink]="'/profile'"> Profile </a>
-            <a mat-button [routerLink]="'/criteria'"> Debt Relief Options </a>
-            <a mat-button [routerLink]="'/subscriber'"> Subscription </a>
+            <a mat-button [routerLink]="'/profile'" *ngIf="user_profile.email !== 'admin@gmail.com'"> Profile </a>
+            <a mat-button [routerLink]="'/criteria'" *ngIf="user_profile.email !== 'admin@gmail.com'"> Debt Relief Options </a>
+            <a mat-button [routerLink]="'/subscriber'" *ngIf="user_profile.email === 'admin@gmail.com'"> Subscription </a>
             <a mat-button (click)="logout()"> Logout </a>
         </div>
     </mat-toolbar-row>

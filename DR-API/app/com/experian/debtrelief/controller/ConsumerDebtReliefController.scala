@@ -35,7 +35,7 @@ class ConsumerDebtReliefController @Inject()(components: ControllerComponents, v
 
         consumerDebtReliefCollection.flatMap(_.insert.one(consumerdebtrelief)).map { lastError =>
           logger.debug(s"Successfully inserted with LastError: $lastError")
-          Created("Consumer Debt Relief Options has been successfully updated.")
+          Ok(Json.toJson(request.body))
         }
       }
       case e: JsError => {
