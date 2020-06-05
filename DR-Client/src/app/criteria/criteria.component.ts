@@ -7,6 +7,7 @@ import { user_profile } from '../user.profile';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../environments/environment';
 import { DebtReliefOption } from '../models/debt-relief-option';
+import { DebtRelief } from '../models/debt-relief';
 
 @Component({
   selector: 'criteria',
@@ -24,8 +25,8 @@ export class CriteriaComponent implements OnInit {
   first = true;
   tradeData;
   displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefOption', 'apply'];
-  debtReliefOptionList: DebtReliefOption;
   debtReliefOptionNgModel = {};
+  debtRelief: DebtRelief = new DebtRelief(0,0,'','','',0,'','');
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
@@ -179,8 +180,12 @@ export class CriteriaComponent implements OnInit {
 
   applyClicked(rowJson) {
     console.log('Row JSON', rowJson);
-    const value = this.debtReliefOptionNgModel[rowJson._id.$oid].split('@@')[0];
+    const value = Number(this.debtReliefOptionNgModel[rowJson._id.$oid].split('@@')[0]);
     const option = this.debtReliefOptionNgModel[rowJson._id.$oid].split('@@')[1];
+    const date = new Date();
+    const dateString = (date.getMonth() + 1) + '-' + date.getDate() + '-' + date.getFullYear();
+    this.debtRelief = new DebtRelief(rowJson.pin.$long,rowJson.accountNB.$long,rowJson.subscriberId,rowJson.acctTypeCD,option,value,"Applied",dateString);
+    this.criteriaService.submitDebtRelief(this.debtRelief);
     // *** TO DO ***/
   }
 
