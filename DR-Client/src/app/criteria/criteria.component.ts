@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { user_profile } from '../user.profile';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../environments/environment';
+import {DebtReliefOption} from "../models/debt-relief-option";
 
 @Component({
   selector: 'criteria',
@@ -22,7 +23,12 @@ export class CriteriaComponent implements OnInit {
   uploader: FileUploader;
   first = true;
   tradeData;
+<<<<<<< HEAD
+  displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefOption', 'debtReliefValue', 'apply'];
+=======
   displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefValue', 'debtReliefOption', 'apply'];
+  debtReliefOptionList: DebtReliefOption;
+>>>>>>> 8b7015ecaaa9563340609a159ffcd55f70202da3
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
@@ -43,6 +49,11 @@ export class CriteriaComponent implements OnInit {
         this.spinner.hide();
       }
     });
+
+    /*this.criteriaService.getReliefValue(subscriberId: String, accntTypeCd: String, score: String).subscribe((res:any)=> {
+      this.debtReliefOptionList = res;
+    });*/
+
   }
 
   ngOnInit(): void {
@@ -113,7 +124,9 @@ export class CriteriaComponent implements OnInit {
             console.log('Temp Trade Data', tempTradeData);
             for (const item of tempTradeData) {
               this.criteriaService.getReliefValue(item.subscriberId, item.acctTypeCD, user_profile.score).subscribe(
-                reliefData => {
+
+                      (reliefData :any) => {
+                  this.debtReliefOptionList = reliefData;
                   // let reliefData = [[{ "_id": { "$oid": "5ed71fe38221ebeace230c6d" }, "subscriberId": "12345", "creditScoreFrom": 300, "creditScoreTo": 700, "debtReliefOption": "DP", "debtReliefValue": 90, "loanType": "01" }]];
                   let tempReliefData = reliefData[0][0];
                   console.log('Relief Data', tempReliefData);
