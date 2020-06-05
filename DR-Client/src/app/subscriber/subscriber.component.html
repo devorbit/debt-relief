@@ -1,17 +1,8 @@
 <div class="subscriber-container" *ngIf="!post" novalidate>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="form">
-
         <div style="padding-bottom: 1em">
             <label style="font-size: x-large"><strong>Subscriber Details: </strong></label>
         </div>
-
-
-        <!--<mat-form-field class="form-element">
-            <input matInput type="text" placeholder="Subscriber" formControlName="subscriberId">
-            <mat-error *ngIf="!formGroup.controls['subscriberId'].valid && formGroup.controls['subscriberId'].touched">
-                This Value is Required
-            </mat-error>
-        </mat-form-field>-->
 
         <mat-form-field class="form-element">
             <mat-select placeholder="Subscriber" formControlName="subscriberId">
