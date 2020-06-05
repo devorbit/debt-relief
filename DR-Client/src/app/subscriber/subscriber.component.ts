@@ -24,11 +24,11 @@ export class SubscriberComponent implements OnInit {
 
     subscriberIdValue: string;
 
-    constructor(private formBuilder: FormBuilder, private subscriberService: SubscriberService, private httpc: HttpClient) {
+    constructor(private formBuilder: FormBuilder, private subscriberService: SubscriberService) {
         this.formGroup = this.formBuilder.group({
             'subscriberId': [null, Validators.required],
-            'creditScoreFrom': [null, Validators.required],
-            'creditScoreTo': [null, Validators.required],
+            'creditScoreFrom': [null, [Validators.required, Validators.max(849)]],
+            'creditScoreTo': [null, [Validators.required, Validators.max(850)]],
             'debtReliefOption': [null, Validators.required ],
             'debtReliefValue': [null, Validators.required ],
             'loanType': [null, Validators.required ]
