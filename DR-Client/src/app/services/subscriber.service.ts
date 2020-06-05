@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
 })
 export class SubscriberService {
-    // userAPI = environment.userAPI;
+
     constructor(private http: HttpClient) { }
 
 

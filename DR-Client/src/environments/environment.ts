@@ -15,6 +15,7 @@ export const environment = {
   getTradeAPI: { url: 'http://localhost:9000/trade' },
   getReliefValueAPI: { url: 'http://localhost:9000/subscriber' },
   getSubscriberListAPI: { url: 'http://localhost:9000/subscriber/list' },
+  updateDebtReliefAPI: { url: 'http://localhost:9000/debtrelief/update' },
 };
 
 
