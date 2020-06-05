@@ -121,8 +121,8 @@
         <ng-container matColumnDef="debtReliefOption">
             <th mat-header-cell *matHeaderCellDef> Debt Relief <br> Option/Value </th>
             <td mat-cell *matCellDef="let element">
-                <mat-select placeholder="Select Option">
-                    <mat-option *ngFor="let item of element.debtReliefArray" type='text' [value]="item.debtReliefOption">{{item.debtReliefDisplayVal}}</mat-option>
+                <mat-select placeholder="Select Option" [(ngModel)]="debtReliefOptionNgModel[element._id.$oid]">
+                    <mat-option *ngFor="let item of element.debtReliefArray" type='text' [value]="item.debtReliefValue + '@@' + item.debtReliefOption">{{item.debtReliefDisplayVal}}</mat-option> 
                 </mat-select>
             </td>
         </ng-container>
