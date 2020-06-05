@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CriteriaService } from "../services/criteria.service";
-import { Criteria } from "../models/criteria";
+import { CriteriaService } from '../services/criteria.service';
+import { Criteria } from '../models/criteria';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { user_profile } from '../user.profile';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../environments/environment';
-import {DebtReliefOption} from "../models/debt-relief-option";
+import {DebtReliefOption} from '../models/debt-relief-option';
 
 @Component({
   selector: 'criteria',
@@ -23,17 +23,14 @@ export class CriteriaComponent implements OnInit {
   uploader: FileUploader;
   first = true;
   tradeData;
-<<<<<<< HEAD
-  displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefOption', 'debtReliefValue', 'apply'];
-=======
+
   displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefValue', 'debtReliefOption', 'apply'];
   debtReliefOptionList: DebtReliefOption;
->>>>>>> 8b7015ecaaa9563340609a159ffcd55f70202da3
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
-      'reasonCd': [null, Validators.required],
-      'needDetails': [null, Validators.required]
+      reasonCd: [null, Validators.required],
+      needDetails: [null, Validators.required]
     });
     this.uploader = new FileUploader({
       url: environment.criteriaAPI.url,
@@ -77,8 +74,8 @@ export class CriteriaComponent implements OnInit {
         if (succesData && succesData[0].length > 0 && succesData[0][0].length > 0) { // Criteria Present
           succesData = succesData[0][0];
           this.criteriaPresent = true;
-          this.reasonDD = succesData['reasonCd'];
-          this.needDD = succesData['needDetails'];
+          this.reasonDD = succesData.reasonCd;
+          this.needDD = succesData.needDetails;
           this.spinner.hide();
         } else {
           // this.nextClicked();
@@ -119,19 +116,19 @@ export class CriteriaComponent implements OnInit {
           tradeData => {
             this.first = false;
             // let tradeData = [[{ "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }, { "_id": { "$oid": "5ed7ac6ee2ca713a0b1265fd" }, "pin": { "$long": 1234 }, "accountNB": { "$long": 1234567 }, "acctSTATUSCD": "11", "acctOpenDT": "02-02-2001", "acctTypeCD": "01", "acctBalanceAm": { "$long": 5000 }, "acctPaymentAmount": { "$long": 2000 }, "subscriberId": "0001", "subscriberName": "Test Bank", "enhancedSpclCmntCD": "00", "termsFreq": "D", "terms": 20 }]];
-            let tempTradeData = tradeData[0];
+            const tempTradeData = tradeData[0];
             console.log('Trade Data', tradeData);
             console.log('Temp Trade Data', tempTradeData);
             for (const item of tempTradeData) {
               this.criteriaService.getReliefValue(item.subscriberId, item.acctTypeCD, user_profile.score).subscribe(
 
-                      (reliefData :any) => {
+                      (reliefData: any) => {
                   this.debtReliefOptionList = reliefData;
                   // let reliefData = [[{ "_id": { "$oid": "5ed71fe38221ebeace230c6d" }, "subscriberId": "12345", "creditScoreFrom": 300, "creditScoreTo": 700, "debtReliefOption": "DP", "debtReliefValue": 90, "loanType": "01" }]];
-                  let tempReliefData = reliefData[0][0];
+                  const tempReliefData = reliefData[0][0];
                   console.log('Relief Data', tempReliefData);
-                  item['debtReliefOption'] = tempReliefData['debtReliefOption'];
-                  item['debtReliefValue'] = tempReliefData['debtReliefValue'];
+                  item.debtReliefOption = tempReliefData.debtReliefOption;
+                  item.debtReliefValue = tempReliefData.debtReliefValue;
                   console.log('Temp Trade Data', tempTradeData);
                   this.tradeData = tempTradeData;
                 }, err => {
@@ -156,7 +153,7 @@ export class CriteriaComponent implements OnInit {
 
   applyClicked(rowJson) {
     console.log('Row JSON', rowJson);
-    //*** TO DO ***/
+    // *** TO DO ***/
   }
 
 }
