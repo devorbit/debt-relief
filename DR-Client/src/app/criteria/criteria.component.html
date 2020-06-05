@@ -61,7 +61,7 @@
         </ng-container>
 
         <ng-container matColumnDef="acctSTATUSCD">
-            <th mat-header-cell *matHeaderCellDef> Account Status Code </th>
+            <th mat-header-cell *matHeaderCellDef> Account Status </th>
             <!-- <td mat-cell *matCellDef="let element"> {{element.acctSTATUSCD}} </td> -->
             <td mat-cell *matCellDef="let element">
                 <mat-select placeholder="Account Type Code" value="{{element.acctSTATUSCD}}" disabled>
@@ -73,7 +73,7 @@
         </ng-container>
 
         <ng-container matColumnDef="acctTypeCD">
-            <th mat-header-cell *matHeaderCellDef> Account Type Code </th>
+            <th mat-header-cell *matHeaderCellDef> Account Type </th>
             <td mat-cell *matCellDef="let element">
                 <mat-select placeholder="Account Type Code" value="{{element.acctTypeCD}}" disabled>
                     <mat-option type='text' value="00">AUTO LOAN</mat-option>
@@ -104,12 +104,12 @@
         </ng-container>
 
         <ng-container matColumnDef="enhancedSpclCmntCD">
-            <th mat-header-cell *matHeaderCellDef> Enhanced Special <br> Comment CD </th>
+            <th mat-header-cell *matHeaderCellDef> Special Comments </th>
             <td mat-cell *matCellDef="let element"> {{element.enhancedSpclCmntCD}} </td>
         </ng-container>
 
         <ng-container matColumnDef="termsFreq">
-            <th mat-header-cell *matHeaderCellDef> Terms Freq </th>
+            <th mat-header-cell *matHeaderCellDef> Terms Frequency </th>
             <td mat-cell *matCellDef="let element"> {{element.termsFreq}} </td>
         </ng-container>
 
