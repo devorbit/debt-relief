@@ -3,14 +3,16 @@ package com.experian.debtrelief.controller
 import com.experian.debtrelief.model.Criteria
 import javax.inject.Inject
 import play.api.Logging
-import play.api.mvc.{AbstractController, Action, ControllerComponents}
+import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.play.json.collection.JSONCollection
 import play.api.libs.json._
+
 import scala.concurrent.{ExecutionContext, Future}
 import com.experian.debtrelief.macros.JsonFormats._
-import reactivemongo.api.{ Cursor, ReadPreference }
-import reactivemongo.play.json._, collection._
+import reactivemongo.api.{Cursor, ReadPreference}
+import reactivemongo.play.json._
+import collection._
 
 //@Singleton
 class CriteriaController @Inject()(components: ControllerComponents, val reactiveMongoApi: ReactiveMongoApi)(implicit exec: ExecutionContext)
@@ -28,14 +30,13 @@ class CriteriaController @Inject()(components: ControllerComponents, val reactiv
      * turned into a JsObject using a Writes.)
      */
 
-
     request.body.validate[Criteria](Criteria.readCrietria) match {
       case JsSuccess(criteria, _) => {
         val _: Criteria = criteria
 
         criteriaCollection.flatMap(_.insert.one(criteria)).map { lastError =>
           logger.debug(s"Successfully inserted with LastError: $lastError")
-          Created("Criteria has been successfully updated.")
+          Ok(Json.toJson(request.body))
         }
       }
       case e: JsError => {
