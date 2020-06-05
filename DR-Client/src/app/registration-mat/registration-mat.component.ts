@@ -27,6 +27,9 @@ export class RegistrationMatComponent {
   });
 
   constructor(private regFB: FormBuilder, private loginFB: FormBuilder, private userService: UserService, private spinner: NgxSpinnerService, private router: Router) {
+    if (user_profile.pin && user_profile.pin.length > 0) {
+      this.router.navigateByUrl('/criteria'); // User already logged in 
+    }
   }
 
   loginOnSubmit() {

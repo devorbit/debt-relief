@@ -22,7 +22,7 @@ export class CriteriaComponent implements OnInit {
   uploader: FileUploader;
   first = true;
   tradeData;
-  displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefValue', 'debtReliefOption', 'apply'];
+  displayedColumns: string[] = ['accountNB', 'acctSTATUSCD', 'acctTypeCD', 'acctBalanceAm', 'acctPaymentAmount', 'subscriberName', 'enhancedSpclCmntCD', 'termsFreq', 'terms', 'debtReliefOption', 'debtReliefValue', 'apply'];
 
   constructor(private formBuilder: FormBuilder, private criteriaService: CriteriaService, private spinner: NgxSpinnerService) {
     this.formGroup = this.formBuilder.group({
