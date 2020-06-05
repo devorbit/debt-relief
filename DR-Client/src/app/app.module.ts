@@ -26,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgxGaugeModule } from 'ngx-gauge';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     RouterModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    NgxGaugeModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
