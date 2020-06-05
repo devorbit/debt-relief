@@ -27,8 +27,12 @@ export class RegistrationMatComponent {
   });
 
   constructor(private regFB: FormBuilder, private loginFB: FormBuilder, private userService: UserService, private spinner: NgxSpinnerService, private router: Router) {
-    if (user_profile.pin && user_profile.pin.length > 0) {
-      this.router.navigateByUrl('/profile'); // User already logged in
+    if (user_profile.pin && user_profile.pin.length > 0) { // User already logged in
+      if (user_profile.email === 'admin@gmail.com') {
+        this.router.navigateByUrl('/subscriber');
+      } else {
+        this.router.navigateByUrl('/profile');
+      }
     }
   }
 
@@ -59,7 +63,11 @@ export class RegistrationMatComponent {
                 console.log('Score Data', tempScoreData);
                 user_profile.score = tempScoreData.toString();
                 this.spinner.hide();
-                this.router.navigateByUrl('/profile');
+                if (user_profile.email === 'admin@gmail.com') {
+                  this.router.navigateByUrl('/subscriber');
+                } else {
+                  this.router.navigateByUrl('/profile');
+                }
               },
               err => {
                 console.error(err);
