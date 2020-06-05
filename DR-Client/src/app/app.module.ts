@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
-import { RegistrationComponent } from './registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -31,7 +30,6 @@ import { NgxGaugeModule } from 'ngx-gauge';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
     RegistrationMatComponent,
     ProfileComponent,
     SubscriberComponent,
